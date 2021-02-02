@@ -8,7 +8,7 @@ const {blocked}=require('../../middleware/auth')
 router.get('/:id',async (req,res)=>{
     const tests=await Test.find({themeId:req.params.id})
     console.log(tests)
-    if(tests.length>0){
+    if(tests.length==0){
         res.render('Ttestlar',{tests:tests,id:req.params.id});
     }
     else{

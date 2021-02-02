@@ -3,9 +3,18 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const {Test} = require('../../models/test');
 const {blocked}=require('../../middleware/auth')
+
+
 router.get('/:id',async (req,res)=>{
     const tests=await Test.find({themeId:req.params.id})
-    res.render('Ttestlar',{tests:tests,id:req.params.id});
+    console.log(tests)
+    if(tests.length==0){
+        res.render('Ttestlar',{tests:tests,id:req.params.id});
+    }
+    else{
+        res.render('Tresult',{id:"Bu mavzu bo'yicha siz test qo'shib bo'lgansiz !"});
+    }
+    
 
 })
 

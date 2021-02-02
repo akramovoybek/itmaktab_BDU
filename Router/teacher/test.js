@@ -12,7 +12,7 @@ router.get('/:id',async (req,res)=>{
         res.render('Ttestlar',{tests:tests,id:req.params.id});
     }
     else{
-        res.send('Ttestlar');
+        res.render('Tresult',{id:"Bu mavzu bo'yicha siz test qo'shib bo'lgansiz !"});
     }
     
 

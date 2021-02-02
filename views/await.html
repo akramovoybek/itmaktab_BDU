@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        body {
+            background-image: url(./img/unnamed.jpg);
+            background-size: cover;
+            background-position: center;
+            /* background-repeat: no-repeat; */
+        }
+
+        #remember {
+            opacity: .7;
+            position: relative;
+        }
+
+        .login {
+            margin-top: 120px;
+            /* margin-left: 20px; */
+        }
+
+        .login .card {
+            background: rgba(0, 0, 0, .6);
+        }
+
+        .login label {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .login input {
+            font-size: 20px;
+            color: #ccc;
+        }
+        p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="vaqt">
+        <p id="demo"></p>
+
+        <script>
+            // Set the date we're counting down to
+            var daqiqa = 1000 * 20 
+            var countDownDate = new Date(Date.now() + daqiqa).getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for  minutes and seconds
+
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById("demo").innerHTML = minutes + ": " + seconds + "s ";
+
+                // If the count down is over, write some text 
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        </script>
+    </div>
+
+    <div class="row login">
+        <div class="col s12 l4 offset-l4">
+            <div class="card">
+                <div class="card-action blue center-align">
+                    <h5><b>Sign Up</b></h5>
+                </div>
+                <form action="signup" method="POST">
+                    <div class="card-content">
+                        <div class="form-field">
+                            <label for="name">Username</label>
+                            <input type="text" name="name" id="name">
+                        </div><br>
+                        <div class="form-field">
+                            <input id="indeterminate-checkbox" type="checkbox" />
+                            <span><label for="indeterminate-checkbox"> Remember me</label></span>
+                        </div><br>
+                        <div class="form-field center-align">
+                            <button type="submit" class="btn-large blue">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+
+</body>
+
+</html>

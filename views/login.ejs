@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        body {
+            background-image: url(img/unnamed.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #remember {
+            opacity: .7;
+            position: relative;
+        }
+
+        .login {
+            margin-top: 120px;
+          
+        }
+
+        .login .card {
+            background: rgba(0, 0, 0, .6);
+        }
+
+        .login label {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .login input {
+            font-size: 20px;
+            color: #ccc;
+        }
+        p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+    </style>
+</head>
+
+<body >
+
+
+    <div class="row login">
+        <div class="col s12 l4 offset-l4">
+            <div class="card">
+                <div class="card-action blue center-align">
+                    <h5>
+                        <div class="alert alert-danger"></div>
+                   </h5>
+                    <h5><b>Login</b></h5>
+                </div>
+                <form action="/teacher/login" method="POST">
+                    <div class="card-content">
+                            <div class="form-field">
+                            <label for="name">login</label>
+                            <input type="text" name="login" id="name">
+                        </div><br>
+                        <div class="form-field">
+                            <label for="name">password</label>
+                            <input type="password" name="password" id="name">
+                        </div><br>
+                        <div class="form-field">
+                            <input id="indeterminate-checkbox" type="checkbox" />
+                            <span><label for="indeterminate-checkbox"> Remember me</label></span>
+                        </div><br>
+                        <div class="form-field">
+                            <a href="/teacher/signup">Ro'yxatdan o'tish</a>
+                        </div><br>
+                            <label class="red-text" for="">  <% if (message) { %>
+                                <div class="alert alert-danger"><%= message %></div>
+                              <% } %></label>
+        
+                        <div class="form-field center-align">
+                         <button type="submit" class="btn-large blue">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        body {
+            background-image: url(./img/login.jpg);
+            background-size: cover;
+            background-position: center;
+            /* background-repeat: no-repeat; */
+        }
+
+        
+        .tugma {
+            margin: 160px;
+            margin-left: 600px;
+           background-position: center;
+           object-position: center;
+           font-size: 16px;
+            color: #ccc;
+           
+        }
+        
+
+        
+    </style>
+</head>
+
+<body>
+
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+      const socket = io();
+      
+     
+      const Login_Start = document.getElementById('Login_Start');
+      const Test_Start = document.getElementById('Test_Start');
+      Login_Start.addEventListener('click', function () {
+        socket.emit('start');
+    
+      });
+      socket.on('start', function (msg) {
+        document.getElementById('qwe').innerHTML="Ro'yxatdan o'tish boshlandi"
+      });
+  
+     
+  
+      </script>
+      <script type="text/javascript" src="/js/materialize.js"></script>
+      <script type="text/javascript" src="/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../css/materialize.css" media="screen,projection" />
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+      body {
+  
+        font-family: sans-serif !important;
+      }
+  
+      ul li {
+        position: relative;
+      }
+  
+      ul li a::before {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        width: 0px;
+        height: 4px;
+        transition: 0.3s;
+        background-color: #fff !important;
+  
+      }
+  
+      ul li a::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0;
+        width: 0px;
+        height: 4px;
+        transition: 0.5s ease;
+        background-color: #fff !important;
+  
+      }
+  
+      ul li:hover a::before,
+      ul li:hover a::after {
+        content: "";
+        width: 100%;
+      }
+  
+      .card {
+        padding: 20px;
+        width: 280px;
+        background-color: #ebecf0;
+  
+        transition: 0.3s;
+        margin: 20px;
+        transform: rotate(0deg) skewX(0deg) translate(0, 0);
+      }
+  
+      .card::before {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        right: -10px;
+        height: 20px;
+        width: 100%;
+        background-color: #babecc;
+        transform: rotate(0deg) skewX(45deg);
+      }
+  
+      .card::after {
+        content: "";
+        position: absolute;
+        right: -19px;
+        top: 9px;
+        height: 100%;
+        width: 20px;
+        background-color: #babecc;
+        transform: rotate(0deg) skewY(45deg);
+      }
+  
+      .card:hover {
+        background-color: #fa2d2d;
+        transform: rotate(0deg) skewX(0deg) translate(-20px, -20px);
+        box-shadow: 50px 50px 50px #111;
+  
+      }
+  
+      .card:hover .card-title {
+        color: #eee !important;
+      }
+  
+      .card:hover::before {
+        background-color: #b61408;
+      }
+  
+      .card:hover::after {
+        background-color: #c9190d;
+      }
+  
+      #more {
+        transition: 0.5s linear;
+      }
+  
+      #more:hover {
+        transform: scale(1.1);
+      }
+  
+      .btn2 {
+        background-color: #fa2d2d;
+        position: relative;
+      }
+  
+      .btn2::before {
+        content: "";
+        position: absolute;
+        bottom: -7px;
+        left: 3px;
+        height: 7px;
+        width: 100%;
+        background-color: #b61408;
+        transform: rotate(0deg) skewX(45deg);
+      }
+  
+      .btn2::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        right: -7px;
+        height: 100%;
+        width: 7%;
+        background-color: #b61408;
+        transform: rotate(0deg) skewY(45deg);
+      }
+  
+      .card:hover .btn2 {
+        background-color: #eee;
+        color: #111;
+      }
+  
+      .card:hover .btn2::before {
+        background-color: #babecc;
+      }
+  
+      .card:hover .btn2::after {
+        background-color: #babecc;
+      }
+    </style>
+</head>
+
+<body>
+  <nav style="background-color:#c9190d;">
+    <div class="nav-wrapper  ">
+        <a href="#" class="brand-logo " style="margin-left: 30px;">Online maktab</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/student/allresult" style="font-size: 20px;">Test natijalar</a></li>
+            <li><a href="#" style="font-size: 20px;">Mening kurslarim</a></li>
+            <li><a href="/student/signout" style="font-size: 20px;">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="#">Test natijalar</a></li>
+  <li><a href="#">Mening kurslarim</a></li>
+  <li><a href="#">Logout</a></li>
+
+</ul>
+<br>
+    <div class="login"  style="display:flex;flex-wrap: wrap;justify-content: center;align-items: center;">
+        
+        
+        <% for(var j=0; j < message.length; j++) { %>
+        <div class="col s12 l4 ">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="../../img/login.jpg">
+                </div>
+                <div class="card-content">
+                    <p class="card-title activator  "><%= message[j].name %><i
+                            class="material-icons right">more_vert</i></p>
+                    <p><a href="/student/gettheme/<%= message[j]._id %>"><button class="btn btn2" type="submit" name="action">Kirish
+                        <i class="material-icons right">send</i>
+                      </button></a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title  text-light-4" style="color: #c9190d !important;"><%= message[j].name %><i
+                            class="material-icons right">close</i></span>
+                            <p><h4 class=" red-text">Kurs haqida</h4></p>
+                    <p><b>Kurs nomi: </b><%= message[j].name %></p>
+                    <p><b>Tanlangan kategoriya: </b><%= message[j].category.name%></p>
+                    <p><b>Kurs narxi: </b><%= message[j].fee %></p>
+                    <p><b>Kurs o'qituvchisi:</b> <%= message[j].trainer.name %></p>
+                </div>
+            </div>
+        </div>
+        
+        <% } %>
+       
+    </div>
+
+
+    
+    <footer style="background-color: #fa2d2d;">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            
+            <h5 class="grey-text text-lighten-4">Online maktab loyihasi.</h5>
+          </div>
+          
+        </div>
+      </div>
+      <div class="footer-copyright" style="height:80px;display:flex;align-items: center;">
+        <div class="container white-text">
+        © 2020 IteLab
+        <a class="grey-text text-lighten-4 right" id="more" href="#!">About me</a>
+        </div>
+      </div>
+    </footer>
+    
+      <script type="text/javascript" src="../../js/jquery.min.js"></script>
+      <script type="text/javascript" src="../../js/materialize.js"></script>
+  <script>
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+          });
+  </script>
+
+</body>
+
+</html>

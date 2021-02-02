@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/materialize.css" media="screen,projection" />
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        body {
+            background-image: url(./img/login.jpg);
+            background-size: cover;
+            background-position: center;
+            /* background-repeat: no-repeat; */
+        }
+
+        #remember {
+            opacity: .7;
+            position: relative;
+        }
+
+        .login {
+            margin-top: 120px;
+            /* margin-left: 20px; */
+        }
+
+        .login .card {
+            background: rgba(0, 0, 0, .6);
+        }
+
+        .login label {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .login input {
+            font-size: 20px;
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+ Testlar soni:   <%= count %> <br>
+    <form action="/answers" method="POST">
+        <%count=0%>
+        <% for(var element of test) {%>
+            <%count=count+1%>
+            <div class="savol"><%= element.savol %></div>
+            <input type="text" name="id<%= count %>" value="<%= element._id %>" style="display: none;">
+            
+            <label>
+                <input class="with-gap red-text" name="<%= count %>" type="radio" value='1'/>
+                <span><%= element.key1 %></span>
+            </label><br>
+            <label>
+                <input class="with-gap red-text" name="<%= count %>" type="radio" value='2'/>
+                <span><%= element.key2 %></span><br>
+            </label>
+            <label>
+                <input class="with-gap red-text" name="<%= count %>" type="radio" value='3'/>
+                <span><%= element.key3 %></span>
+            </label><br>
+            <label>
+                <input class="with-gap red-text" name="<%= count %>" type="radio" value='4'/>
+                <span><%= element.key4 %></span>
+            </label><br>
+            
+            <% } %>
+            <input type="text" name="fcount" value="<%= count %>" style="display: none;"> 
+            <br>
+    <button type="submit">Testni tugatish</button>
+    </form>
+
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+
+</body>
+
+</html>

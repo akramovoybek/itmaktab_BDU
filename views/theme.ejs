@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../css/materialize.min.css" media="screen,projection" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+
+      font-family: sans-serif !important;
+    }
+
+    ul li {
+      position: relative;
+    }
+
+    ul li a::before {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      width: 0px;
+      height: 4px;
+      transition: 0.3s;
+      background-color: #fff !important;
+
+    }
+
+    ul li a::after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      right: 0;
+      width: 0px;
+      height: 4px;
+      transition: 0.5s ease;
+      background-color: #fff !important;
+
+    }
+
+    ul li:hover a::before,
+    ul li:hover a::after {
+      content: "";
+      width: 100%;
+    }
+
+    .card {
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #ebecf0;
+      border-radius: 20px;
+      box-shadow: 2px 2px 5px #bfc5db, -2px -2px 10px #fff !important;
+    }
+
+    .card:hover {
+      box-shadow: inset 2px 2px 5px #babecc, inset -2px -2px 10px #fff !important;
+    }
+
+    .btn2 {
+      background-color: #fa2d2d;
+      position: relative;
+    }
+
+    .btn2::before {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 3px;
+      height: 7px;
+      width: 100%;
+      background-color: #b61408;
+      transform: rotate(0deg) skewX(45deg);
+    }
+
+    .btn2::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      right: -7px;
+      height: 100%;
+      width: 7px;
+      background-color: #b61408;
+      transform: rotate(0deg) skewY(45deg);
+    }
+
+    .btn2:hover {
+      background-color: #eee;
+      color: #111;
+    }
+
+    .btn2:hover::before {
+      background-color: #babecc;
+    }
+
+    .btn2:hover::after {
+      background-color: #babecc;
+    }
+  </style>
+</head>
+
+<body>
+  <nav style="background-color: #fa2d2d;">
+    <div class="nav-wrapper  ">
+      <a href="#" class="brand-logo " style="margin-left: 30px;">Online maktab</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/student/allresult" style="font-size: 20px;">Test natijalar</a></li>
+        <li><a href="#" style="font-size: 20px;">Mening kurslarim</a></li>
+        <li><a href="/student/signout" style="font-size: 20px;">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="#">Test natijalar</a></li>
+    <li><a href="#">Mening kurslarim</a></li>
+    <li><a href="#">Logout</a></li>
+
+  </ul>
+
+
+  <br>
+
+
+  <div class="row ">
+    <% if(message.length==0) { %> 
+    <div>
+      <div class="row ">
+        <div class="col s12 l4 offset-l4">
+          <div class="card">
+            <div class=" center-align">
+              <h4><b style="color: #fa2d2d;">Tez orada bu kurs o'z faoliyatini boshlaydi<br></b></h5>
+
+
+                </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%}%>
+      <%for(var j=0;j< message.length;j++) {%> -->
+    <ul class="collapsible popout">
+      <li class="<%= (j==0)?'active':'' %>">
+        <div class="collapsible-header red-text <%= (j%2==0)?'grey':'white' %> "><i
+            class="material-icons ">filter_drama</i><b><%=j+1%>.</b> <%=message[j].name%>
+          <!-- ##### -->
+<!-- /student/downloadAFile/<%=message[j].data %> -->
+          <!-- #### -->
+        </div>
+        <div class="collapsible-body lighten-3 " style="display: block;"><a href="qwertyuiop.docx" download="<%=message[j].data%>.doc" >Materialni yuklab olish</a><br><br> <a
+            href="/student/getquiz/<%= message[j]._id %>"><button class="btn btn2" type="submit" name="action">Test
+              ishlash
+              <i class="material-icons right">fingerprint</i>
+            </button></a></div>
+
+      </li>
+    </ul>
+    <% } %>
+  </div>
+
+
+
+
+  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../js/materialize.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+    });
+
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+    });
+  </script>
+  <script type="text/javascript" src="./js/jquery.js"></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.tap-target');
+      var instances = M.TapTarget.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $('.tap-target').tapTarget();
+    });
+  </script>
+  <script>
+    var instance = M.TapTarget.getInstance(elem);
+    $('.tap-target').tapTarget('methodName');
+    $('.tap-target').tapTarget('methodName', paramName);
+  </script>
+</body>
+
+</html>

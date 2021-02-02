@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    table.striped>tbody>tr:nth-child(odd) {
+      background-color: rgba(170, 213, 213, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper blue">
+      <a href="#!" class="brand-logo">Online Maktab</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="http://localhost:2001/users/login">Home</a></li>
+        <li><a href="http://localhost:2001/users/login">Login</a></li>
+        <li><a href="http://localhost:2001/users/login">categorys</a></li>
+        <li><a href="http://localhost:2001/users/login">My orders</a></li>
+        <li>
+
+          <a class='dropdown-trigger' href='#' data-target='dropdown1'>Others</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="http://localhost:2001/users/login">Home</a></li>
+    <li><a href="http://localhost:2001/users/login">Login</a></li>
+    <li><a href="http://localhost:2001/users/login">categorys</a></li>
+    <li><a href="http://localhost:2001/users/login">My orders</a></li>
+    <li>
+
+      <a class='dropdown-trigger' href='#' data-target='dropdown2'>Others</a>
+    </li>
+
+  </ul>
+
+
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">three</a></li>
+    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+    <li><a href="/teacher/logout"><i class="material-icons">cloud</i>Log Out</a></li>
+  </ul>
+
+  <ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">three</a></li>
+    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Log Out</a></li>
+  </ul>
+  <div class="container">
+<form action="/teacher/addcourse/<%= id %>" method="post">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Course's Name</th>
+        <th>Course's fee</th>
+        <th>Trainer</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    
+    <tbody id="place">
+      <% for(course of courses){ %>
+        <tr>
+          <td><a href="<%= (meId==course.trainer._id)?('/teacher/addtheme/'+course._id):'' %>"><%= course.name %></a></td>
+          <td><%= course.fee %></td>
+          <td><%= course.trainer.name %></td>
+          <td><%= course.status %></td>
+        </tr>
+        <%}%>
+       
+      </tbody>
+    </table>
+  </form>
+    <button class="btn-floating btn-large waves-effect waves-light pulse right" id="addcourse"><i
+        class="material-icons">add</i></button>
+  </div>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+  <script>
+
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+      $('.dropdown-trigger').dropdown({ coverTrigger: false, active: true });
+
+    });</script>
+ <script>
+    let a = true
+    let tbody = document.getElementById('place')
+    document.getElementById('addcourse').addEventListener('click', () => {
+      if (a) {
+        a = false
+        tbody.innerHTML+=`
+        <tr>
+          <td><input type="text" name="name" required></td>
+          <td><input type="number" name="fee" required></td>
+          <td><%=me%></td>
+          <td>Active</td>
+     <td><button class="red-text" type="submit"><i class="material-icons">save</i> </button></td>
+        </tr>
+        `
+
+      }
+    })
+  </script>
+
+</body>
+
+</body>
+
+</html>

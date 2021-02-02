@@ -51,7 +51,7 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/error' }),
   function(req, res) {
     // Successful authentication, redirect success.
-    res.redirect('http://localhost:2001/student/success')
+    res.redirect('https://google-bdu.herokuapp.com/student/success')
   });
 
 router.get('/success', async(req, res) => {

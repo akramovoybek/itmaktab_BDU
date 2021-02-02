@@ -152,7 +152,7 @@
 <!-- /student/downloadAFile/<%=message[j].data %> -->
           <!-- #### -->
         </div>
-        <div class="collapsible-body lighten-3 " style="display: block;"><a href="qwertyuiop.docx" download="<%=message[j].data%>.doc" >Materialni yuklab olish</a><br><br> <a
+        <div class="collapsible-body lighten-3 " style="display: block;"><a href="<%=message[j].data.substring(message[j].data.length,6)%>" download="<%=message[j].data%>" >Materialni yuklab olish</a><br><br> <a
             href="/student/getquiz/<%= message[j]._id %>"><button class="btn btn2" type="submit" name="action">Test
               ishlash
               <i class="material-icons right">fingerprint</i>

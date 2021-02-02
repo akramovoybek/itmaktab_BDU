@@ -41,35 +41,14 @@ var upload = multer({
 }).single("file"); //Field name and max count
 
 app.get("/", (req, res) => {
-  if (!authed) {
-    // Generate an OAuth URL and redirect there
-    var url = oAuth2Client.generateAuthUrl({
-      access_type: "offline",
-      scope: SCOPES,
-    });
-    console.log(url);
-    res.render("index", { url: url });
-  } else {
-    var oauth2 = google.oauth2({
-      auth: oAuth2Client,
-      version: "v2",
-    });
-    oauth2.userinfo.get(function (err, response) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(response.data);
-        name = response.data.name
-        pic = response.data.picture
+
         res.render("success", {
           name: response.data.name,
           pic: response.data.picture,
           success:false
+      
         });
-      }
-    });
-  }
-});
+      });
 
 app.post("/upload", (req, res) => {
   upload(req, res, function (err) {
@@ -78,35 +57,9 @@ app.post("/upload", (req, res) => {
       return res.end("Something went wrong");
     } else {
       console.log(req.file.path);
-      const drive = google.drive({ version: "v3",auth:oAuth2Client  });
-      const fileMetadata = {
-        name: req.file.filename,
-      };
-      const media = {
-        mimeType: req.file.mimetype,
-        body: fs.createReadStream(req.file.path),
-      };
-      drive.files.create(
-        {
-          resource: fileMetadata,
-          media: media,
-          fields: "id"
-        },
-        (err, file) => {
-          if (err) {
-            // Handle error
-            console.error(err);
-          } else {
-            fs.unlinkSync(req.file.path)
-            console.log({id:file.data.id})
-            console.log(file)
-            res.render("success",{name:name,pic:pic,success:true})
-          }
-
-        }
-      );
+      res.redirect('/')
     }
-  });
+});
 });
 
 app.get('/logout',(req,res) => {
@@ -114,27 +67,7 @@ app.get('/logout',(req,res) => {
     res.redirect('/')
 })
 
-app.get("/google/callback", function (req, res) {
-  const code = req.query.code;
-  console.log({code:code})
-  if (code) {
-    // Get an access token based on our OAuth code
-    oAuth2Client.getToken(code, function (err, tokens) {
-      if (err) {
-        console.log("Error authenticating");
-        console.log(err);
-      } else {
-        console.log("Successfully authenticated");
-        console.log(tokens)
-        oAuth2Client.setCredentials(tokens);
 
-
-        authed = true;
-        res.redirect("/");
-      }
-    });
-  }
-});
 // app.get('/download', (req, res) => {
 //   download('1eclWjO9PPfdNpAU73667n-EunQfmQGnQ').then(e=>{
 //     console.log(e)
